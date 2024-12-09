@@ -1,0 +1,11 @@
+﻿body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #f0f8ff; /* Light blue sky */
+}
+
+.horse {
+    position: absolute;
+    width: 100px; /* Adjust size of horses */
+    transition: transform 0.2s; /* Smooth flipping and rotation */
+}
