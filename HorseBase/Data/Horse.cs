@@ -7,29 +7,29 @@ namespace HorseBase.Data
         public int Id { get; set; }
 
         [Required, Display(Name = "Номер")]
-        public int number { get; set; }
+        public int Number { get; set; }
 
         public int BreedId { get; set; }
 
         [Required, Display(Name = "Порода")]
-        public Breed breed { get; set; }
+        public Breed Breed { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:d M yyyy}")]
         [Required, Display(Name = "Година на раждане")]
-        public DateTime birhtYear { get; set; }
+        public DateTime BirhtYear { get; set; }
 
         [Required, Display(Name = "Пол")]
-        public bool gender { get; set; }
+        public string Gender { get; set; }
 
         [Required, Display(Name = "Височина")]
-        public int height { get; set; }
+        public int Height { get; set; }
 
         [DataType(DataType.Currency)]
         [Required, Display(Name = "Цена")]
-        public double price { get; set; }
+        public double Price { get; set; }
 
         [Display(Name = "Снимки")]
-        public string? photoPath { get; set; }
+        public string? PhotoPath { get; set; }
     }
 }

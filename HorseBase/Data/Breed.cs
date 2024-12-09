@@ -7,12 +7,12 @@ namespace HorseBase.Data
         public int Id { get; set; }
 
         [Required, Display(Name = "Название")]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [DataType(DataType.ImageUrl)]
         [Required, Display(Name = "Връзка")]
-        public string url { get; set; }
+        public string Url { get; set; }
 
-        ICollection<Horse> horses { get; set; }
+        ICollection<Horse> Horses { get; set; }
     }
 }

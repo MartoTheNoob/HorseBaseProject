@@ -19,11 +19,11 @@ namespace HorseBase.Data.DbInitializer
             // Seed Breeds
             var breeds = new List<Breed>
             {
-                new Breed{ name = "Mustang", url = "/lib/images/Thoroughbred.png" },
-                new Breed { name = "Quarter Horse", url = "/lib/images/QuarterHorse.png" },
-                new Breed { name = "Appaloosa", url = "/lib/images/Appaloosa.png" },
-                new Breed { name = "PaintHorse", url = "/lib/images/PaintHorse.png" },
-                new Breed { name = "Warmbloods", url = "/lib/images/Warmbloods.png" },
+                new Breed{ Name = "Mustang", Url = "/lib/images/Thoroughbred.png" },
+                new Breed { Name = "Quarter Horse", Url = "/lib/images/QuarterHorse.png" },
+                new Breed { Name = "Appaloosa", Url = "/lib/images/Appaloosa.png" },
+                new Breed { Name = "PaintHorse", Url = "/lib/images/PaintHorse.png" },
+                new Breed { Name = "Warmbloods", Url = "/lib/images/Warmbloods.png" },
             };
 
             context.breeds.AddRange(breeds);
@@ -36,11 +36,11 @@ namespace HorseBase.Data.DbInitializer
 
             var horses = new List<Horse> {
 
-             new Horse { number = 1, birhtYear = new DateTime(2024, 12, 4), breed = context.breeds.Where(x => x.name == "Mustang").FirstOrDefault(), gender = true, height = 30, price = 5 },
-             new Horse { number = 2, birhtYear = new DateTime(2024, 11, 4), breed = context.breeds.Where(x => x.name == "Quarter Horse").FirstOrDefault(), gender = true, height = 30, price = 5 },
-             new Horse { number = 3, birhtYear = new DateTime(2024, 8, 4), breed = context.breeds.Where(x => x.name == "Appaloosa").FirstOrDefault(), gender = true, height = 30, price = 5 },
-             new Horse { number = 4, birhtYear = new DateTime(2024, 3, 4), breed = context.breeds.Where(x => x.name == "PaintHorse").FirstOrDefault(), gender = true, height = 30, price = 5 },
-             new Horse { number = 5, birhtYear = new DateTime(2024, 5, 4), breed = context.breeds.Where(x => x.name == "Warmbloods").FirstOrDefault(), gender = true, height = 30, price = 5 },
+             new Horse { Number = 1, BirhtYear = new DateTime(2024, 12, 4), Breed = context.breeds.Where(x => x.Name == "Mustang").FirstOrDefault(), Gender = "male", Height = 30, Price = 5 },
+             new Horse { Number = 2, BirhtYear = new DateTime(2024, 11, 4), Breed = context.breeds.Where(x => x.Name == "Quarter Horse").FirstOrDefault(), Gender = "female", Height = 30, Price = 5 },
+             new Horse { Number = 3, BirhtYear = new DateTime(2024, 8, 4), Breed = context.breeds.Where(x => x.Name == "Appaloosa").FirstOrDefault(), Gender = "male", Height = 30, Price = 5 },
+             new Horse { Number = 4, BirhtYear = new DateTime(2024, 3, 4), Breed = context.breeds.Where(x => x.Name == "PaintHorse").FirstOrDefault(), Gender = "male", Height = 30, Price = 5 },
+             new Horse { Number = 5, BirhtYear = new DateTime(2024, 5, 4), Breed = context.breeds.Where(x => x.Name == "Warmbloods").FirstOrDefault(), Gender = "male", Height = 30, Price = 5 },
 
             };
             context.horses.AddRange(horses);

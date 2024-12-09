@@ -7,23 +7,23 @@ namespace HorseBase.Data
         public int Id { get; set; }
 
         [Required, Display(Name = "Потребител")]
-        public User user { get; set; }
+        public User User { get; set; }
 
         [Required, Display(Name = "Кон")]
-        public Horse horse {  get; set; }
+        public Horse Horse {  get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:d/M/yyyy - H:mm}")]
         [Required, Display(Name = "Дата и час на вземане")]
-        public DateTime takeHour { get; set; }
+        public DateTime TakeHour { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:d/M/yyyy - H:mm}")]
         [Required, Display(Name = "Дата и час на връщане")]
-        public DateTime returnHour { get; set; }
+        public DateTime ReturnHour { get; set; }
 
         [DataType(DataType.Currency)]
         [Required, Display(Name = "Цена")]
-        public double price { get; set; }
+        public double Price { get; set; }
     }
 }

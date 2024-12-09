@@ -16,7 +16,7 @@ function GetData() {
 let result;
     $.ajax(
         {
-            url: '/Horses/GetAllHorses',
+            url: '/Horse/GetAllHorses',
             async: false,
             dataType: "json",
             success: (givenData) => {
@@ -43,7 +43,7 @@ function spawnHorses() {
 
     for (let i = 0; i < horseCount; i++) {
         const horse = document.createElement('img');
-        horse.src = horsesController[i].breed.url; // Correct path to horse image
+        horse.src = horsesController[i].Breed.Url; // Correct path to horse image
         horse.className = 'horse';
         horse.style.left = `${Math.random() * window.innerWidth}px`;
         horse.style.top = `${Math.random() * window.innerHeight}px`;
@@ -67,11 +67,12 @@ function spawnHorses() {
             horses[i].isHovered = true; // Stop movement
             tooltip.style.display = 'block';
             tooltip.innerHTML = `
-                <strong>Horse Number:</strong> ${horses[i].info.number} <br>
-                <strong>Breed:</strong> ${horses[i].info.breed.name} <br>
-                <strong>Price:</strong> ${horses[i].info.price} <br>
-                <strong>Height:</strong> ${horses[i].info.height} <br>
-                <strong>Year of Birth:</strong> ${horses[i].info.birhtYear.toString().substring(0,10)}
+                <strong>Horse Number:</strong> ${horses[i].info.Number} <br>
+                <strong>Breed:</strong> ${horses[i].info.Breed.Name} <br>
+                <strong>Gender:</strong> ${horses[i].info.Gender} <br>
+                <strong>Price:</strong> ${horses[i].info.Price} <br>
+                <strong>Height:</strong> ${horses[i].info.Height} <br>
+                <strong>Year of Birth:</strong> ${horses[i].info.BirhtYear.toString().substring(0,10)}
             `;
 
             // Update tooltip position near mouse cursor
