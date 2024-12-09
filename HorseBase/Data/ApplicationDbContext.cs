@@ -12,7 +12,6 @@ namespace HorseBase.Data
         public DbSet<User> users { get; set; }
         public DbSet<Horse> horses { get; set; }
         public DbSet<Breed> breeds { get; set; }
-        public DbSet<Photo> photos { get; set; }
         public DbSet<Reservation> reservations { get; set; }
     }
 }

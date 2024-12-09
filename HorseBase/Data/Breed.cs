@@ -12,5 +12,7 @@ namespace HorseBase.Data
         [DataType(DataType.ImageUrl)]
         [Required, Display(Name = "Връзка")]
         public string url { get; set; }
+
+        ICollection<Horse> horses { get; set; }
     }
 }

@@ -9,6 +9,8 @@ namespace HorseBase.Data
         [Required, Display(Name = "Номер")]
         public int number { get; set; }
 
+        public int BreedId { get; set; }
+
         [Required, Display(Name = "Порода")]
         public Breed breed { get; set; }
 

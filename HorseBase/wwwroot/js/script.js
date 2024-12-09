@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
     horseCount = horsesController.length;
     spawnHorses();
     moveHorses();
-
 });
 
 function GetData() {
@@ -30,6 +29,18 @@ let result;
 
 // Function to create and spawn horses
 function spawnHorses() {
+
+    const tooltip = document.createElement('div');
+    tooltip.className = 'tooltip';
+    tooltip.style.position = 'absolute';
+    tooltip.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    tooltip.style.color = 'white';
+    tooltip.style.padding = '10px';
+    tooltip.style.borderRadius = '5px';
+    tooltip.style.display = 'none'; // Initially hidden
+    tooltip.style.opacity = '100';
+    document.body.appendChild(tooltip);
+
     for (let i = 0; i < horseCount; i++) {
         const horse = document.createElement('img');
         horse.src = horsesController[i].breed.url; // Correct path to horse image
@@ -46,9 +57,45 @@ function spawnHorses() {
             directionX: Math.random() < 0.5 ? -1 : 1,
             directionY: Math.random() < 0.5 ? -1 : 1,
             isResting: false, // Flag to determine if horse is resting
+            isHovered: false,
             rotationAngle: 0, // Current tilt angle for rotation animation
+            info: horsesController[i]
+        });
+
+        // Add hover event listeners
+        horse.addEventListener('mouseover', (event) => {
+            horses[i].isHovered = true; // Stop movement
+            tooltip.style.display = 'block';
+            tooltip.innerHTML = `
+                <strong>Horse Number:</strong> ${horses[i].info.number} <br>
+                <strong>Breed:</strong> ${horses[i].info.breed.name} <br>
+                <strong>Price:</strong> ${horses[i].info.price} <br>
+                <strong>Height:</strong> ${horses[i].info.height} <br>
+                <strong>Year of Birth:</strong> ${horses[i].info.birhtYear.toString().substring(0,10)}
+            `;
+
+            // Update tooltip position near mouse cursor
+            updateTooltipPosition(event);
+
+
+        });
+
+        horse.addEventListener('mousemove', (event) => {
+            if (horses[i].isHovered) {
+                updateTooltipPosition(event);
+            }
+        });
+
+        horse.addEventListener('mouseout', () => {
+            horses[i].isHovered = false; // Resume movement
+            tooltip.style.display = 'none';
         });
     }
+}
+function updateTooltipPosition(event) {
+    const tooltip = document.querySelector('.tooltip');
+    tooltip.style.left = `${event.pageX + 10}px`; // Slightly to the right of the cursor
+    tooltip.style.top = `${event.pageY + 10}px`; // Slightly below the cursor
 }
 
 // Function to move all horses
@@ -67,7 +114,7 @@ function moveHorses() {
         }
 
         // Randomly decide to rest
-        if (Math.random() < 0.005) {
+        if (Math.random() < 0.005 || horseData.isHovered == true) {
             horseData.isResting = true;
             horse.style.transition = 'transform 1s'; // Smooth transition to rest
             horse.style.transform = 'rotate(0deg)'; // Reset rotation during rest

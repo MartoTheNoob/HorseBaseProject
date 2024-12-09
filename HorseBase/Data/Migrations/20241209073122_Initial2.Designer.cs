@@ -4,6 +4,7 @@ using HorseBase.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HorseBase.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241209073122_Initial2")]
+    partial class Initial2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,11 +54,11 @@ namespace HorseBase.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BreedId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("birhtYear")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("breedId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("gender")
                         .HasColumnType("bit");
@@ -74,7 +77,7 @@ namespace HorseBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BreedId");
+                    b.HasIndex("breedId");
 
                     b.ToTable("horses");
                 });
@@ -364,7 +367,7 @@ namespace HorseBase.Migrations
                 {
                     b.HasOne("HorseBase.Data.Breed", "breed")
                         .WithMany()
-                        .HasForeignKey("BreedId")
+                        .HasForeignKey("breedId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
