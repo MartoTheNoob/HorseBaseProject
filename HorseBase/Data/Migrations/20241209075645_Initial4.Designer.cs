@@ -57,16 +57,16 @@ namespace HorseBase.Migrations
                     b.Property<int>("BreedId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("birhtYear")
+                    b.Property<DateTime>("BirhtYear")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("gender")
+                    b.Property<bool>("Gender")
                         .HasColumnType("bit");
 
                     b.Property<int>("height")
                         .HasColumnType("int");
 
-                    b.Property<int>("number")
+                    b.Property<int>("Number")
                         .HasColumnType("int");
 
                     b.Property<string>("photoPath")
@@ -365,13 +365,13 @@ namespace HorseBase.Migrations
 
             modelBuilder.Entity("HorseBase.Data.Horse", b =>
                 {
-                    b.HasOne("HorseBase.Data.Breed", "breed")
+                    b.HasOne("HorseBase.Data.Breed", "Breed")
                         .WithMany()
                         .HasForeignKey("BreedId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("breed");
+                    b.Navigation("Breed");
                 });
 
             modelBuilder.Entity("HorseBase.Data.Reservation", b =>

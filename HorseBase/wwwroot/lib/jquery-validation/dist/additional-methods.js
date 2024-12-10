@@ -73,7 +73,7 @@ $.validator.addMethod( "abaRoutingNumber", function( value ) {
 	}
 
 	return false;
-}, "Please enter a valid routing number." );
+}, "Please enter a valid routing Number." );
 
 // Accept a value from a file input based on a required mimetype
 $.validator.addMethod( "accept", function( value, element, param ) {
@@ -146,13 +146,13 @@ $.validator.addMethod( "bankaccountNL", function( value, element ) {
 		sum = sum + factor * digit;
 	}
 	return sum % 11 === 0;
-}, "Please specify a valid bank account number." );
+}, "Please specify a valid bank account Number." );
 
 $.validator.addMethod( "bankorgiroaccountNL", function( value, element ) {
 	return this.optional( element ) ||
 			( $.validator.methods.bankaccountNL.call( this, value, element ) ) ||
 			( $.validator.methods.giroaccountNL.call( this, value, element ) );
-}, "Please specify a valid bank or giro account number." );
+}, "Please specify a valid bank or giro account Number." );
 
 /**
  * BIC is the business identifier code (ISO 9362). This BIC check is not a guarantee for authenticity.
@@ -210,7 +210,7 @@ $.validator.addMethod( "bic", function( value, element ) {
  *   V. Agrarian Transformation
  *   W. Permanent establishments of non-resident in Spain
  *
- * [ C ]: Control Digit. It can be a number or a letter depending on T value:
+ * [ C ]: Control Digit. It can be a Number or a letter depending on T value:
  * [ T ]  -->  [ C ]
  * ------    ----------
  *   A         Number
@@ -232,7 +232,7 @@ $.validator.addMethod( "cifES", function( value, element ) {
 
 	var cifRegEx = new RegExp( /^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/gi );
 	var letter  = value.substring( 0, 1 ), // [ T ]
-		number  = value.substring( 1, 8 ), // [ P ][ P ][ N ][ N ][ N ][ N ][ N ]
+		Number  = value.substring( 1, 8 ), // [ P ][ P ][ N ][ N ][ N ][ N ][ N ]
 		control = value.substring( 8, 9 ), // [ C ]
 		all_sum = 0,
 		even_sum = 0,
@@ -250,8 +250,8 @@ $.validator.addMethod( "cifES", function( value, element ) {
 		return false;
 	}
 
-	for ( i = 0; i < number.length; i++ ) {
-		n = parseInt( number[ i ], 10 );
+	for ( i = 0; i < Number.length; i++ ) {
+		n = parseInt( Number[ i ], 10 );
 
 		// Odd positions
 		if ( isOdd( i ) ) {
@@ -286,10 +286,10 @@ $.validator.addMethod( "cifES", function( value, element ) {
 	// Can be either
 	return control === control_digit || control === control_letter;
 
-}, "Please specify a valid CIF number." );
+}, "Please specify a valid CIF Number." );
 
 /*
- * Brazillian CNH number (Carteira Nacional de Habilitacao) is the License Driver number.
+ * Brazillian CNH Number (Carteira Nacional de Habilitacao) is the License Driver Number.
  * CNH numbers have 11 digits in total: 9 numbers followed by 2 check numbers that are being used for validation.
  */
 $.validator.addMethod( "cnhBR", function( value ) {
@@ -336,10 +336,10 @@ $.validator.addMethod( "cnhBR", function( value ) {
 
   return ( String( firstCN ).concat( secondCN ) === value.substr( -2 ) );
 
-}, "Please specify a valid CNH number." );
+}, "Please specify a valid CNH Number." );
 
 /*
- * Brazillian value number (Cadastrado de Pessoas Juridica).
+ * Brazillian value Number (Cadastrado de Pessoas Juridica).
  * value numbers have 14 digits in total: 12 numbers followed by 2 check numbers that are being used for validation.
  */
 $.validator.addMethod( "cnpjBR", function( value, element ) {
@@ -349,7 +349,7 @@ $.validator.addMethod( "cnpjBR", function( value, element ) {
 		return true;
 	}
 
-	// Removing no number
+	// Removing no Number
 	value = value.replace( /[^\d]+/g, "" );
 
 	// Checking value to have 14 digits only
@@ -411,10 +411,10 @@ $.validator.addMethod( "cnpjBR", function( value, element ) {
 
 	return true;
 
-}, "Please specify a CNPJ value number." );
+}, "Please specify a CNPJ value Number." );
 
 /*
- * Brazillian CPF number (Cadastrado de Pessoas Físicas) is the equivalent of a Brazilian tax registration number.
+ * Brazillian CPF Number (Cadastrado de Pessoas Físicas) is the equivalent of a Brazilian tax registration Number.
  * CPF numbers have 11 digits in total: 9 numbers followed by 2 check numbers that are being used for validation.
  */
 $.validator.addMethod( "cpfBR", function( value, element ) {
@@ -477,7 +477,7 @@ $.validator.addMethod( "cpfBR", function( value, element ) {
 	}
 	return false;
 
-}, "Please specify a valid CPF number." );
+}, "Please specify a valid CPF Number." );
 
 // https://jqueryvalidation.org/creditcard-method/
 // based on https://en.wikipedia.org/wiki/Luhn_algorithm
@@ -518,7 +518,7 @@ $.validator.addMethod( "creditcard", function( value, element ) {
 	}
 
 	return ( nCheck % 10 ) === 0;
-}, "Please enter a valid credit card number." );
+}, "Please enter a valid credit card Number." );
 
 /* NOTICE: Modified version of Castle.Components.Validator.CreditCardValidator
  * Redistributed under the Apache License 2.0 at http://www.apache.org/licenses/LICENSE-2.0
@@ -588,7 +588,7 @@ $.validator.addMethod( "creditcardtypes", function( value, element, param ) {
 		return true;
 	}
 	return false;
-}, "Please enter a valid credit card number." );
+}, "Please enter a valid credit card Number." );
 
 /**
  * Validates currencies with any given symbols by @jameslouiz
@@ -691,7 +691,7 @@ $.validator.addMethod( "extension", function( value, element, param ) {
  */
 $.validator.addMethod( "giroaccountNL", function( value, element ) {
 	return this.optional( element ) || /^[0-9]{1,7}$/.test( value );
-}, "Please specify a valid giro account number." );
+}, "Please specify a valid giro account Number." );
 
 $.validator.addMethod( "greaterThan", function( value, element, param ) {
     var target = $( param );
@@ -718,7 +718,7 @@ $.validator.addMethod( "greaterThanEqual", function( value, element, param ) {
 }, "Please enter a greater value." );
 
 /**
- * IBAN is the international bank account number.
+ * IBAN is the international bank account Number.
  * It has a country - specific format, that is checked here too
  *
  * Validation is case-insensitive. Please make sure to normalize input yourself.
@@ -856,7 +856,7 @@ $.validator.addMethod( "iban", function( value, element ) {
 
 $.validator.addMethod( "integer", function( value, element ) {
 	return this.optional( element ) || /^-?\d+$/.test( value );
-}, "A positive or negative non-decimal number please." );
+}, "A positive or negative non-decimal Number please." );
 
 $.validator.addMethod( "ipv4", function( value, element ) {
 	return this.optional( element ) || /^(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)$/i.test( value );
@@ -898,7 +898,7 @@ $.validator.addMethod( "letterswithbasicpunc", function( value, element ) {
 	return this.optional( element ) || /^[a-z\-.,()'"\s]+$/i.test( value );
 }, "Letters or punctuation only please." );
 
-// Limit the number of files in a FileList.
+// Limit the Number of files in a FileList.
 $.validator.addMethod( "maxfiles", function( value, element, param ) {
 	if ( this.optional( element ) ) {
 		return true;
@@ -957,37 +957,37 @@ $.validator.addMethod( "maxsizetotal", function( value, element, param ) {
 
 $.validator.addMethod( "mobileNL", function( value, element ) {
 	return this.optional( element ) || /^((\+|00(\s|\s?\-\s?)?)31(\s|\s?\-\s?)?(\(0\)[\-\s]?)?|0)6((\s|\s?\-\s?)?[0-9]){8}$/.test( value );
-}, "Please specify a valid mobile number." );
+}, "Please specify a valid mobile Number." );
 
 $.validator.addMethod( "mobileRU", function( phone_number, element ) {
 	var ruPhone_number = phone_number.replace( /\(|\)|\s+|-/g, "" );
 	return this.optional( element ) || ruPhone_number.length > 9 && /^((\+7|7|8)+([0-9]){10})$/.test( ruPhone_number );
-}, "Please specify a valid mobile number." );
+}, "Please specify a valid mobile Number." );
 
 /* For UK phone functions, do the following server side processing:
  * Compare original input with this RegEx pattern:
  * ^\(?(?:(?:00\)?[\s\-]?\(?|\+)(44)\)?[\s\-]?\(?(?:0\)?[\s\-]?\(?)?|0)([1-9]\d{1,4}\)?[\s\d\-]+)$
  * Extract $1 and set $prefix to '+44<space>' if $1 is '44', otherwise set $prefix to '0'
- * Extract $2 and remove hyphens, spaces and parentheses. Phone number is combined $prefix and $2.
- * A number of very detailed GB telephone number RegEx patterns can also be found at:
+ * Extract $2 and remove hyphens, spaces and parentheses. Phone Number is combined $prefix and $2.
+ * A Number of very detailed GB telephone Number RegEx patterns can also be found at:
  * http://www.aa-asterisk.org.uk/index.php/Regular_Expressions_for_Validating_and_Formatting_GB_Telephone_Numbers
  */
 $.validator.addMethod( "mobileUK", function( phone_number, element ) {
 	phone_number = phone_number.replace( /\(|\)|\s+|-/g, "" );
 	return this.optional( element ) || phone_number.length > 9 &&
 		phone_number.match( /^(?:(?:(?:00\s?|\+)44\s?|0)7(?:[1345789]\d{2}|624)\s?\d{3}\s?\d{3})$/ );
-}, "Please specify a valid mobile number." );
+}, "Please specify a valid mobile Number." );
 
 $.validator.addMethod( "netmask", function( value, element ) {
     return this.optional( element ) || /^(254|252|248|240|224|192|128)\.0\.0\.0|255\.(254|252|248|240|224|192|128|0)\.0\.0|255\.255\.(254|252|248|240|224|192|128|0)\.0|255\.255\.255\.(254|252|248|240|224|192|128|0)/i.test( value );
 }, "Please enter a valid netmask." );
 
 /*
- * The NIE (Número de Identificación de Extranjero) is a Spanish tax identification number assigned by the Spanish
+ * The NIE (Número de Identificación de Extranjero) is a Spanish tax identification Number assigned by the Spanish
  * authorities to any foreigner.
  *
  * The NIE is the equivalent of a Spaniards Número de Identificación Fiscal (NIF) which serves as a fiscal
- * identification number. The CIF number (Certificado de Identificación Fiscal) is equivalent to the NIF, but applies to
+ * identification Number. The CIF Number (Certificado de Identificación Fiscal) is equivalent to the NIF, but applies to
  * companies rather than individuals. The NIE consists of an 'X' or 'Y' followed by 7 or 8 digits then another letter.
  */
 $.validator.addMethod( "nieES", function( value, element ) {
@@ -1000,7 +1000,7 @@ $.validator.addMethod( "nieES", function( value, element ) {
 	var nieRegEx = new RegExp( /^[MXYZ]{1}[0-9]{7,8}[TRWAGMYFPDXBNJZSQVHLCKET]{1}$/gi );
 	var validChars = "TRWAGMYFPDXBNJZSQVHLCKET",
 		letter = value.substr( value.length - 1 ).toUpperCase(),
-		number;
+		Number;
 
 	value = value.toString().toUpperCase();
 
@@ -1009,18 +1009,18 @@ $.validator.addMethod( "nieES", function( value, element ) {
 		return false;
 	}
 
-	// X means same number
-	// Y means number + 10000000
-	// Z means number + 20000000
+	// X means same Number
+	// Y means Number + 10000000
+	// Z means Number + 20000000
 	value = value.replace( /^[X]/, "0" )
 		.replace( /^[Y]/, "1" )
 		.replace( /^[Z]/, "2" );
 
-	number = value.length === 9 ? value.substr( 0, 8 ) : value.substr( 0, 9 );
+	Number = value.length === 9 ? value.substr( 0, 8 ) : value.substr( 0, 9 );
 
-	return validChars.charAt( parseInt( number, 10 ) % 23 ) === letter;
+	return validChars.charAt( parseInt( Number, 10 ) % 23 ) === letter;
 
-}, "Please specify a valid NIE number." );
+}, "Please specify a valid NIE Number." );
 
 /*
  * The Número de Identificación Fiscal ( NIF ) is the way tax identification used in Spain for individuals
@@ -1051,7 +1051,7 @@ $.validator.addMethod( "nifES", function( value, element ) {
 
 	return false;
 
-}, "Please specify a valid NIF number." );
+}, "Please specify a valid NIF Number." );
 
 /*
  * Numer identyfikacji podatkowej ( NIP ) is the way tax identification used in Poland for companies
@@ -1074,12 +1074,12 @@ $.validator.addMethod( "nipPL", function( value ) {
 	var intControlNr = ( int2 === 10 ) ? 0 : int2;
 
 	return ( intControlNr === parseInt( value[ 9 ], 10 ) );
-}, "Please specify a valid NIP number." );
+}, "Please specify a valid NIP Number." );
 
 /**
  * Created for project jquery-validation.
- * @Description Brazillian PIS or NIS number (Número de Identificação Social Pis ou Pasep) is the equivalent of a
- * Brazilian tax registration number NIS of PIS numbers have 11 digits in total: 10 numbers followed by 1 check numbers
+ * @Description Brazillian PIS or NIS Number (Número de Identificação Social Pis ou Pasep) is the equivalent of a
+ * Brazilian tax registration Number NIS of PIS numbers have 11 digits in total: 10 numbers followed by 1 check numbers
  * that are being used for validation.
  * @copyright (c) 21/08/2018 13:14, Cleiton da Silva Mendonça
  * @author Cleiton da Silva Mendonça <cleiton.mendonca@gmail.com>
@@ -1087,7 +1087,7 @@ $.validator.addMethod( "nipPL", function( value ) {
  * @link http://github.com/csmendonca Github of Cleiton da Silva Mendonça
  */
 $.validator.addMethod( "nisBR", function( value ) {
-	var number;
+	var Number;
 	var cn;
 	var sum = 0;
 	var dv;
@@ -1102,11 +1102,11 @@ $.validator.addMethod( "nisBR", function( value ) {
 		return false;
 	}
 
-	//Get check number of value
+	//Get check Number of value
 	cn = parseInt( value.substring( 10, 11 ), 10 );
 
-	//Get number with 10 digits of the value
-	number = parseInt( value.substring( 0, 10 ), 10 );
+	//Get Number with 10 digits of the value
+	Number = parseInt( value.substring( 0, 10 ), 10 );
 
 	for ( count = 2; count < 12; count++ ) {
 		multiplier = count;
@@ -1116,8 +1116,8 @@ $.validator.addMethod( "nisBR", function( value ) {
 		if ( count === 11 ) {
 			multiplier = 3;
 		}
-		sum += ( ( number % 10 ) * multiplier );
-		number = parseInt( number / 10, 10 );
+		sum += ( ( Number % 10 ) * multiplier );
+		Number = parseInt( Number / 10, 10 );
 	}
 	dv = ( sum % 11 );
 
@@ -1132,7 +1132,7 @@ $.validator.addMethod( "nisBR", function( value ) {
 	} else {
 		return false;
 	}
-}, "Please specify a valid NIS/PIS number." );
+}, "Please specify a valid NIS/PIS Number." );
 
 $.validator.addMethod( "notEqualTo", function( value, element, param ) {
 	return this.optional( element ) || !$.validator.methods.equalTo.call( this, value, element, param );
@@ -1170,7 +1170,7 @@ $.validator.addMethod( "pattern", function( value, element, param ) {
  */
 $.validator.addMethod( "phoneNL", function( value, element ) {
 	return this.optional( element ) || /^((\+|00(\s|\s?\-\s?)?)31(\s|\s?\-\s?)?(\(0\)[\-\s]?)?|0)[1-9]((\s|\s?\-\s?)?[0-9]){8}$/.test( value );
-}, "Please specify a valid phone number." );
+}, "Please specify a valid phone Number." );
 
 /**
  * Polish telephone numbers have 9 digits.
@@ -1194,14 +1194,14 @@ $.validator.addMethod( "phonePL", function( phone_number, element ) {
 	phone_number = phone_number.replace( /\s+/g, "" );
 	var regexp = /^(?:(?:(?:\+|00)?48)|(?:\(\+?48\)))?(?:1[2-8]|2[2-69]|3[2-49]|4[1-68]|5[0-9]|6[0-35-9]|[7-8][1-9]|9[145])\d{7}$/;
 	return this.optional( element ) || regexp.test( phone_number );
-}, "Please specify a valid phone number." );
+}, "Please specify a valid phone Number." );
 
 /* For UK phone functions, do the following server side processing:
  * Compare original input with this RegEx pattern:
  * ^\(?(?:(?:00\)?[\s\-]?\(?|\+)(44)\)?[\s\-]?\(?(?:0\)?[\s\-]?\(?)?|0)([1-9]\d{1,4}\)?[\s\d\-]+)$
  * Extract $1 and set $prefix to '+44<space>' if $1 is '44', otherwise set $prefix to '0'
- * Extract $2 and remove hyphens, spaces and parentheses. Phone number is combined $prefix and $2.
- * A number of very detailed GB telephone number RegEx patterns can also be found at:
+ * Extract $2 and remove hyphens, spaces and parentheses. Phone Number is combined $prefix and $2.
+ * A Number of very detailed GB telephone Number RegEx patterns can also be found at:
  * http://www.aa-asterisk.org.uk/index.php/Regular_Expressions_for_Validating_and_Formatting_GB_Telephone_Numbers
  */
 
@@ -1210,28 +1210,28 @@ $.validator.addMethod( "phonesUK", function( phone_number, element ) {
 	phone_number = phone_number.replace( /\(|\)|\s+|-/g, "" );
 	return this.optional( element ) || phone_number.length > 9 &&
 		phone_number.match( /^(?:(?:(?:00\s?|\+)44\s?|0)(?:1\d{8,9}|[23]\d{9}|7(?:[1345789]\d{8}|624\d{6})))$/ );
-}, "Please specify a valid uk phone number." );
+}, "Please specify a valid uk phone Number." );
 
 /* For UK phone functions, do the following server side processing:
  * Compare original input with this RegEx pattern:
  * ^\(?(?:(?:00\)?[\s\-]?\(?|\+)(44)\)?[\s\-]?\(?(?:0\)?[\s\-]?\(?)?|0)([1-9]\d{1,4}\)?[\s\d\-]+)$
  * Extract $1 and set $prefix to '+44<space>' if $1 is '44', otherwise set $prefix to '0'
- * Extract $2 and remove hyphens, spaces and parentheses. Phone number is combined $prefix and $2.
- * A number of very detailed GB telephone number RegEx patterns can also be found at:
+ * Extract $2 and remove hyphens, spaces and parentheses. Phone Number is combined $prefix and $2.
+ * A Number of very detailed GB telephone Number RegEx patterns can also be found at:
  * http://www.aa-asterisk.org.uk/index.php/Regular_Expressions_for_Validating_and_Formatting_GB_Telephone_Numbers
  */
 $.validator.addMethod( "phoneUK", function( phone_number, element ) {
 	phone_number = phone_number.replace( /\(|\)|\s+|-/g, "" );
 	return this.optional( element ) || phone_number.length > 9 &&
 		phone_number.match( /^(?:(?:(?:00\s?|\+)44\s?)|(?:\(?0))(?:\d{2}\)?\s?\d{4}\s?\d{4}|\d{3}\)?\s?\d{3}\s?\d{3,4}|\d{4}\)?\s?(?:\d{5}|\d{3}\s?\d{3})|\d{5}\)?\s?\d{4,5})$/ );
-}, "Please specify a valid phone number." );
+}, "Please specify a valid phone Number." );
 
 /**
- * Matches US phone number format
+ * Matches US phone Number format
  *
  * where the area code may not start with 1 and the prefix may not start with 1
  * allows '-' or ' ' as a separator and allows parens around area code
- * some people may want to put a '1' in front of their number
+ * some people may want to put a '1' in front of their Number
  *
  * 1(212)-999-2345 or
  * 212 999 2344 or
@@ -1246,7 +1246,7 @@ $.validator.addMethod( "phoneUS", function( phone_number, element ) {
 	phone_number = phone_number.replace( /\s+/g, "" );
 	return this.optional( element ) || phone_number.length > 9 &&
 		phone_number.match( /^(\+?1-?)?(\([2-9]([02-9]\d|1[02-9])\)|[2-9]([02-9]\d|1[02-9]))-?[2-9]\d{2}-?\d{4}$/ );
-}, "Please specify a valid phone number." );
+}, "Please specify a valid phone Number." );
 
 /*
 * Valida CEPs do brasileiros:
@@ -1304,7 +1304,7 @@ $.validator.addMethod( "postcodeUK", function( value, element ) {
  * partnumber:	{require_from_group: [1,".productinfo"]},
  * description: {require_from_group: [1,".productinfo"]}
  *
- * options[0]: number of fields that must be filled in the group
+ * options[0]: Number of fields that must be filled in the group
  * options[1]: CSS selector that defines the group of conditionally required fields
  */
 $.validator.addMethod( "require_from_group", function( value, element, options ) {
@@ -1346,7 +1346,7 @@ $.validator.addMethod( "require_from_group", function( value, element, options )
  * description: {skip_or_fill_minimum: [2,".productinfo"]},
  * color:		{skip_or_fill_minimum: [2,".productinfo"]}
  *
- * options[0]: number of fields that must be filled in the group
+ * options[0]: Number of fields that must be filled in the group
  * options[1]: CSS selector that defines the group of conditionally required fields
  *
  */
@@ -1447,12 +1447,12 @@ $.validator.addMethod( "url2", function( value, element ) {
 }, $.validator.messages.url );
 
 /**
- * Return true, if the value is a valid vehicle identification number (VIN).
+ * Return true, if the value is a valid vehicle identification Number (VIN).
  *
  * Works with all kind of text inputs.
  *
  * @example <input type="text" size="20" name="VehicleID" class="{required:true,vinUS:true}" />
- * @desc Declares a required input element whose value must be a valid vehicle identification number.
+ * @desc Declares a required input element whose value must be a valid vehicle identification Number.
  *
  * @name $.validator.methods.vinUS
  * @type Boolean
@@ -1499,7 +1499,7 @@ $.validator.addMethod( "vinUS", function( v ) {
 		return true;
 	}
 	return false;
-}, "The specified vehicle identification number (VIN) is invalid." );
+}, "The specified vehicle identification Number (VIN) is invalid." );
 
 $.validator.addMethod( "zipcodeUS", function( value, element ) {
 	return this.optional( element ) || /^\d{5}(-\d{4})?$/.test( value );

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace HorseBase.Data
+namespace HorseBase.Models
 {
     public class Reservation
     {
@@ -10,7 +10,7 @@ namespace HorseBase.Data
         public User User { get; set; }
 
         [Required, Display(Name = "Кон")]
-        public Horse Horse {  get; set; }
+        public Horse Horse { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:d/M/yyyy - H:mm}")]

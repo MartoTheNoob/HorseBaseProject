@@ -1089,7 +1089,7 @@
     touch: true
   };
   const DefaultType$a = {
-    interval: '(number|boolean)',
+    interval: '(Number|boolean)',
     keyboard: 'boolean',
     slide: '(boolean|string)',
     pause: '(string|boolean)',
@@ -1534,7 +1534,7 @@
 
       const action = typeof config === 'string' ? config : _config.slide;
 
-      if (typeof config === 'number') {
+      if (typeof config === 'Number') {
         data.to(config);
       } else if (typeof action === 'string') {
         if (typeof data[action] === 'undefined') {
@@ -2279,7 +2279,7 @@
     padding = typeof padding === 'function' ? padding(Object.assign({}, state.rects, {
       placement: state.placement
     })) : padding;
-    return mergePaddingObject(typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements));
+    return mergePaddingObject(typeof padding !== 'Number' ? padding : expandToHashMap(padding, basePlacements));
   };
 
   function arrow(_ref) {
@@ -2604,7 +2604,7 @@
       height = visualViewport.height; // Uses Layout Viewport (like Chrome; Safari does not currently)
       // In Chrome, it returns a value very close to 0 (+/-) but contains rounding
       // errors due to floating point numbers, so we need to check precision.
-      // Safari returns a number <= 0, usually < -1 when pinch-zoomed
+      // Safari returns a Number <= 0, usually < -1 when pinch-zoomed
       // Feature detection fails in mobile emulation mode in Chrome.
       // Math.abs(win.innerWidth / visualViewport.scale - visualViewport.width) <
       // 0.001
@@ -2737,7 +2737,7 @@
     return clippingParents.filter(function (clippingParent) {
       return isElement(clippingParent) && contains(clippingParent, clipperElement) && getNodeName(clippingParent) !== 'body';
     });
-  } // Gets the maximum area that the element is visible in due to any number of
+  } // Gets the maximum area that the element is visible in due to any Number of
   // clipping parents
 
 
@@ -2847,7 +2847,7 @@
         altBoundary = _options$altBoundary === void 0 ? false : _options$altBoundary,
         _options$padding = _options.padding,
         padding = _options$padding === void 0 ? 0 : _options$padding;
-    var paddingObject = mergePaddingObject(typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements));
+    var paddingObject = mergePaddingObject(typeof padding !== 'Number' ? padding : expandToHashMap(padding, basePlacements));
     var altContext = elementContext === popper ? reference : popper;
     var referenceElement = state.elements.reference;
     var popperRect = state.rects.popper;
@@ -5303,7 +5303,7 @@
     template: 'string',
     title: '(string|element|function)',
     trigger: 'string',
-    delay: '(number|object)',
+    delay: '(Number|object)',
     html: 'boolean',
     selector: '(string|boolean)',
     placement: '(string|function)',
@@ -5885,18 +5885,18 @@
       };
       config.container = config.container === false ? document.body : getElement(config.container);
 
-      if (typeof config.delay === 'number') {
+      if (typeof config.delay === 'Number') {
         config.delay = {
           show: config.delay,
           hide: config.delay
         };
       }
 
-      if (typeof config.title === 'number') {
+      if (typeof config.title === 'Number') {
         config.title = config.title.toString();
       }
 
-      if (typeof config.content === 'number') {
+      if (typeof config.content === 'Number') {
         config.content = config.content.toString();
       }
 
@@ -6112,7 +6112,7 @@
     target: ''
   };
   const DefaultType$1 = {
-    offset: 'number',
+    offset: 'Number',
     method: 'string',
     target: '(string|element)'
   };
@@ -6554,7 +6554,7 @@
   const DefaultType = {
     animation: 'boolean',
     autohide: 'boolean',
-    delay: 'number'
+    delay: 'Number'
   };
   const Default = {
     animation: true,

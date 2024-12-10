@@ -382,7 +382,7 @@ legend + * {
 [type="tel"],
 [type="url"],
 [type="email"],
-[type="number"] {
+[type="Number"] {
   direction: ltr;
 }
 */

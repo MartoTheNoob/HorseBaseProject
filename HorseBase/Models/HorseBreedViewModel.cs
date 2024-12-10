@@ -1,5 +1,4 @@
-﻿using HorseBase.Data;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HorseBase.Models
 {

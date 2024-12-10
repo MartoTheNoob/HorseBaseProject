@@ -1111,7 +1111,7 @@
     touch: true
   };
   const DefaultType$a = {
-    interval: '(number|boolean)',
+    interval: '(Number|boolean)',
     keyboard: 'boolean',
     slide: '(boolean|string)',
     pause: '(string|boolean)',
@@ -1556,7 +1556,7 @@
 
       const action = typeof config === 'string' ? config : _config.slide;
 
-      if (typeof config === 'number') {
+      if (typeof config === 'Number') {
         data.to(config);
       } else if (typeof action === 'string') {
         if (typeof data[action] === 'undefined') {
@@ -3549,7 +3549,7 @@
     template: 'string',
     title: '(string|element|function)',
     trigger: 'string',
-    delay: '(number|object)',
+    delay: '(Number|object)',
     html: 'boolean',
     selector: '(string|boolean)',
     placement: '(string|function)',
@@ -4131,18 +4131,18 @@
       };
       config.container = config.container === false ? document.body : getElement(config.container);
 
-      if (typeof config.delay === 'number') {
+      if (typeof config.delay === 'Number') {
         config.delay = {
           show: config.delay,
           hide: config.delay
         };
       }
 
-      if (typeof config.title === 'number') {
+      if (typeof config.title === 'Number') {
         config.title = config.title.toString();
       }
 
-      if (typeof config.content === 'number') {
+      if (typeof config.content === 'Number') {
         config.content = config.content.toString();
       }
 
@@ -4358,7 +4358,7 @@
     target: ''
   };
   const DefaultType$1 = {
-    offset: 'number',
+    offset: 'Number',
     method: 'string',
     target: '(string|element)'
   };
@@ -4800,7 +4800,7 @@
   const DefaultType = {
     animation: 'boolean',
     autohide: 'boolean',
-    delay: 'number'
+    delay: 'Number'
   };
   const Default = {
     animation: true,

@@ -54,19 +54,19 @@ namespace HorseBase.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("birhtYear")
+                    b.Property<DateTime>("BirhtYear")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("breedId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("gender")
+                    b.Property<bool>("Gender")
                         .HasColumnType("bit");
 
                     b.Property<int>("height")
                         .HasColumnType("int");
 
-                    b.Property<int>("number")
+                    b.Property<int>("Number")
                         .HasColumnType("int");
 
                     b.Property<int>("photosId")
@@ -384,7 +384,7 @@ namespace HorseBase.Migrations
 
             modelBuilder.Entity("HorseBase.Data.Horse", b =>
                 {
-                    b.HasOne("HorseBase.Data.Breed", "breed")
+                    b.HasOne("HorseBase.Data.Breed", "Breed")
                         .WithMany()
                         .HasForeignKey("breedId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -396,7 +396,7 @@ namespace HorseBase.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("breed");
+                    b.Navigation("Breed");
 
                     b.Navigation("photos");
                 });

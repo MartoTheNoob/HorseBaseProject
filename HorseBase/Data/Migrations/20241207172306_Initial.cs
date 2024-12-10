@@ -210,10 +210,10 @@ namespace HorseBase.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    number = table.Column<int>(type: "int", nullable: false),
+                    Number = table.Column<int>(type: "int", nullable: false),
                     breedId = table.Column<int>(type: "int", nullable: false),
-                    birhtYear = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    gender = table.Column<bool>(type: "bit", nullable: false),
+                    BirhtYear = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Gender = table.Column<bool>(type: "bit", nullable: false),
                     height = table.Column<int>(type: "int", nullable: false),
                     price = table.Column<double>(type: "float", nullable: false),
                     photosId = table.Column<int>(type: "int", nullable: false)

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace HorseBase.Data
+namespace HorseBase.Models
 {
     public class Horse
     {

@@ -109,7 +109,7 @@ namespace HorseBase.Migrations
                 newName: "PhotoPath");
 
             migrationBuilder.RenameColumn(
-                name: "number",
+                name: "Number",
                 table: "horses",
                 newName: "Number");
 
@@ -119,12 +119,12 @@ namespace HorseBase.Migrations
                 newName: "Height");
 
             migrationBuilder.RenameColumn(
-                name: "gender",
+                name: "Gender",
                 table: "horses",
                 newName: "Gender");
 
             migrationBuilder.RenameColumn(
-                name: "birhtYear",
+                name: "BirhtYear",
                 table: "horses",
                 newName: "BirhtYear");
 
@@ -259,7 +259,7 @@ namespace HorseBase.Migrations
             migrationBuilder.RenameColumn(
                 name: "Number",
                 table: "horses",
-                newName: "number");
+                newName: "Number");
 
             migrationBuilder.RenameColumn(
                 name: "Height",
@@ -269,12 +269,12 @@ namespace HorseBase.Migrations
             migrationBuilder.RenameColumn(
                 name: "Gender",
                 table: "horses",
-                newName: "gender");
+                newName: "Gender");
 
             migrationBuilder.RenameColumn(
                 name: "BirhtYear",
                 table: "horses",
-                newName: "birhtYear");
+                newName: "BirhtYear");
 
             migrationBuilder.RenameColumn(
                 name: "Url",
