@@ -17,13 +17,13 @@ namespace HorseBase.Data.DbInitializer
         }
         public static async Task CreateUsers(UserManager<User> userManager, ApplicationDbContext context)
         {
-            if (context.Users.Where(x => x.UserName == "AdminGay").FirstOrDefault() != null)
+            if (context.Users.Where(x => x.UserName == "Admin").FirstOrDefault() != null)
             {
                 return;
             }
             User admin = new User()
             {
-                UserName = "AdminGay",
+                UserName = "Admin",
                 Email = "admin@admin.admin",
                 FirstName = "Admin",
                 MiddleName = "Adminov",

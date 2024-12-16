@@ -77,8 +77,6 @@ function spawnHorses() {
 
             // Update tooltip position near mouse cursor
             updateTooltipPosition(event);
-
-
         });
 
         horse.addEventListener('mousemove', (event) => {
@@ -90,6 +88,11 @@ function spawnHorses() {
         horse.addEventListener('mouseout', () => {
             horses[i].isHovered = false; // Resume movement
             tooltip.style.display = 'none';
+        });
+
+        horse.addEventListener('click', () => {
+            const horseId = horses[i].info.Id;
+            window.location.href = `/Horse/Details/${horseId}`;
         });
     }
 }
