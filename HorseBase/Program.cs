@@ -18,7 +18,7 @@ namespace HorseBase
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
@@ -48,7 +48,7 @@ namespace HorseBase
             {
                 IServiceProvider provider = service.ServiceProvider;
                 ApplicationDbContext context = provider.GetRequiredService<ApplicationDbContext>();
-                DbInitializer.Initialize(context);
+                DbInitializer.Initialize(context, app);
             }
 
             app.Run();

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HorseBase.Data;
 using Newtonsoft.Json;
 using HorseBase.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HorseBase.Controllers
 {

@@ -28,7 +28,6 @@ namespace HorseBase.Controllers
                 {
                     UserName = userRegister.UserName,
                     Email = userRegister.Email,
-                    PasswordHash = userRegister.Password,
                     FirstName = userRegister.FirstName,
                     MiddleName = userRegister.MiddleName,
                     LastName = userRegister.LastName,
@@ -59,7 +58,7 @@ namespace HorseBase.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByNameAsync(logInRequest.Email);
+                var user = await _userManager.FindByEmailAsync(logInRequest.Email);
 
                 if (user != null)
                 {
@@ -67,7 +66,7 @@ namespace HorseBase.Controllers
 
                     if (passwordCheck)
                     {
-                        await _signInManager.PasswordSignInAsync(user, logInRequest.Password, false, false);
+                        await _signInManager.SignInAsync(user, false);
                         return RedirectToAction("Index", "Home");
                     }
                 }
