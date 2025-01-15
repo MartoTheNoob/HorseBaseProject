@@ -1,19 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HorseBase.Models
+namespace HorseBase.Models.ViewModels
 {
-    public class Reservation
+    public class ReservationViewModel
     {
-        public int Id { get; set; }
-
-        [Required, Display(Name = "Потребител")]
-        [ForeignKey("User")]
-        public string UserId { get; set; }
-        public User User{ get; set; }
+        [Display(Name = "Потребител")]
+        public string? UserId { get; set; }
 
         [Required, Display(Name = "Кон")]
-        public Horse Horse { get; set; }
+        [ForeignKey("Horse")]
+        public int HorseId { get; set; }
+        public Horse? Horse { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:d/M/yyyy - H:mm}")]

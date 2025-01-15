@@ -4,6 +4,7 @@ using HorseBase.Models;
 using System.Linq;
 using System.Threading.Tasks;
 using HorseBase.Data;
+using HorseBase.Models.ViewModels;
 
 namespace HorseBase.Controllers
 {
@@ -25,61 +26,43 @@ namespace HorseBase.Controllers
                 return NotFound();
             }
 
-            var reservation = new Reservation
+            var reservation = new ReservationViewModel
             {
+                HorseId = horse.Id,
                 Horse = horse,
                 Price = 0 // Initial value, dynamically updated based on user input
             };
 
             return View(reservation);
         }
-
-        public IActionResult CreateReservation(int horseId)
-        {
-            var horse = _context.horses.Include(h => h.Breed).FirstOrDefault(h => h.Id == horseId);
-
-            if (horse == null)
-            {
-                return NotFound();
-            }
-
-            var reservation = new Reservation
-            {
-                Horse = horse, // Pass the selected horse
-                Price = horse.Price, // Default price calculation
-                TakeHour = DateTime.Now, // Optional: Initialize default values
-                ReturnHour = DateTime.Now.AddHours(1)
-            };
-
-            return View(reservation); // Pass the reservation model to the view
-        }
-
-
-
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TakeHour,ReturnHour,Horse")] Reservation reservation)
+        public async Task<IActionResult> Create(ReservationViewModel reservationRequest)
         {
             if (ModelState.IsValid)
             {
+                var user = await _context.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefaultAsync();
                 // Fetch horse details to calculate price
-                var horse = await _context.horses.FindAsync(reservation.Horse.Id);
+                var horse = await _context.horses.FindAsync(reservationRequest.HorseId);
 
                 if (horse == null)
                 {
                     return NotFound();
                 }
+                Reservation reservation = new Reservation()
+                {
+                    Horse = horse,
+                    Price = reservationRequest.Price,
+                    TakeHour = reservationRequest.TakeHour,
+                    ReturnHour = reservationRequest.ReturnHour,
+                    UserId = user.Id
+                };
 
-                // Calculate price
-                var hours = (reservation.ReturnHour - reservation.TakeHour).TotalHours;
-                reservation.Price = horse.Price * hours;
-
-                _context.Add(reservation);
+                _context.reservations.Add(reservation);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction("Index", "Reservation");
+                return RedirectToAction("Index", "Home");
             }
-            return View(reservation);
+            return View(reservationRequest);
         }
 
     }

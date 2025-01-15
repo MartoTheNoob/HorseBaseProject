@@ -1,4 +1,4 @@
-﻿@model HorseBase.Models.Reservation
+﻿@model HorseBase.Models.ViewModels.ReservationViewModel
 
 @{
     ViewData["Title"] = "Create Reservation";
@@ -22,8 +22,7 @@
         <input asp-for="Price" class="form-control" readonly />
     </div>
 
-    <input type="hidden" asp-for="Horse.Id" />
-    <input type="hidden" asp-for="Horse.Price" />
+    <input type="hidden" asp-for="HorseId" />
 
     <button type="submit" class="btn btn-primary">Reserve</button>
 </form>
