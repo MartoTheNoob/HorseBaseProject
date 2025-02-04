@@ -1,15 +1,62 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moving Horses</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <title>Home Page</title>
+    <style>
+        /* General body styling */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            position: relative; /* Ensure absolute positioning works within the body */
+            min-height: 100vh;
+            min-width: 100vw;
+            background-color: transparent; /* Ensure it doesn't conflict with the overlay */
+        }
+
+        /* Logo styling */
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 150px; /* Adjust the size as needed */
+            z-index: 110; /* Ensure it appears above the overlay */
+        }
+
+        /* Big Button styling */
+        .big-button {
+            position: absolute;
+            bottom: 20px; /* Distance from the bottom */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Perfectly center the button */
+            z-index: 110; /* Ensure it appears above the overlay */
+            background-color: #007bff; /* Blue color */
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: block; /* Ensure the button is visible */
+            height: 200px;
+            width: 200px;
+        }
+
+            .big-button:hover {
+                background-color: #0056b3; /* Darker blue on hover */
+            }
+    </style>
 </head>
 <body>
+    <!-- Logo -->
+    <img src="/images/logo.png" alt="Logo" class="logo">
+
+    <!-- Big Button -->
+    <button class="big-button">Click Me!</button>
 </body>
 </html>

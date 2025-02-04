@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HorseBase.Data;
 using Newtonsoft.Json;
 using HorseBase.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace HorseBase.Controllers
 {
     public class HorseController : Controller
     {
-        private readonly ApplicationDbContext _context;
 
-        public HorseController(ApplicationDbContext context)
+        private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+
+        public HorseController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Horse
@@ -54,18 +52,43 @@ namespace HorseBase.Controllers
             return View();
         }
 
-        // POST: Horse/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Number,BreedId,BirhtYear,Gender,Height,Price,PhotoPath")] Horse horse)
+        public async Task<IActionResult> Create([Bind("Id,Number,BreedId,BirhtYear,Gender,Height,Price,PhotoPath")] Horse horse, IFormFile[] photos)
         {
+            if (photos != null && photos.Length > 0)
+            {
+                var imagePaths = new List<string>();
+
+                foreach (var photo in photos)
+                {
+                    if (photo.Length > 0)
+                    {
+                        // Generate a unique filename for each photo
+                        var fileName = Path.GetFileNameWithoutExtension(photo.FileName);
+                        var extension = Path.GetExtension(photo.FileName);
+                        var filePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", fileName + extension);
+
+                        // Save each photo to the wwwroot/images folder
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await photo.CopyToAsync(stream);
+                        }
+
+                        // Add the relative file path to the list
+                        imagePaths.Add("/images/" + fileName + extension);
+                    }
+                }
+
+                // Save the list of image paths as a comma-separated string
+                horse.PhotoPath = string.Join(",", imagePaths);
+            }
 
             _context.Add(horse);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
 
         // GET: Horse/Edit/5
         public async Task<IActionResult> Edit(int? id)

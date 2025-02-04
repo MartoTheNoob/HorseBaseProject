@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Horse>
+﻿@model IEnumerable<HorseBase.Models.Horse>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,63 +9,43 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Number)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Breed)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BirhtYear)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Gender)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Height)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhotoPath)
-            </th>
+            <th>Number</th>
+            <th>Breed</th>
+            <th>Year of Birth</th>
+            <th>Gender</th>
+            <th>Height</th>
+            <th>Price</th>
+            <th>Photo</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Breed.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BirhtYear)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Height)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhotoPath)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Number)</td>
+                <td>@Html.DisplayFor(modelItem => item.Breed.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.BirhtYear)</td>
+                <td>@Html.DisplayFor(modelItem => item.Gender)</td>
+                <td>@Html.DisplayFor(modelItem => item.Height)</td>
+                <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.PhotoPath))
+                    {
+                        var imagePaths = item.PhotoPath.Split(',');
+                        <img src="@imagePaths.First()" style="width: 100px; height: auto;" />
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

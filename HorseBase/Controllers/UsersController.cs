@@ -31,6 +31,7 @@ namespace HorseBase.Controllers
                     FirstName = userRegister.FirstName,
                     MiddleName = userRegister.MiddleName,
                     LastName = userRegister.LastName,
+                    IsActive = true
                 };
                 var result = await _userManager.CreateAsync(user, userRegister.Password);
 
@@ -66,12 +67,90 @@ namespace HorseBase.Controllers
 
                     if (passwordCheck)
                     {
-                        await _signInManager.SignInAsync(user, false);
+                        if (!user.IsActive)
+                        {
+                            // If the user is inactive, redirect to the No Access page
+                            return RedirectToAction("NoAccess", "Home");
+                        }
+
+                        // Otherwise, sign in the user
+                        await _signInManager.SignInAsync(user, isPersistent: false);
                         return RedirectToAction("Index", "Home");
                     }
                 }
             }
             return View(logInRequest);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> List()
+        {
+            // Fetch all users from the UserManager
+            var users = _userManager.Users.ToList();
+
+            // Create a list of UserViewModel to pass to the view
+            var userViewModels = new List<UserViewModel>();
+
+            foreach (var user in users)
+            {
+                // Get the roles for the user
+                var roles = await _userManager.GetRolesAsync(user);
+
+                // Create a UserViewModel for each user
+                var userViewModel = new UserViewModel
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    MiddleName = user.MiddleName,
+                    LastName = user.LastName,
+                    IsActive = user.IsActive,
+                    Roles = roles.ToList()
+                };
+
+                userViewModels.Add(userViewModel);
+            }
+
+            // Pass the list of UserViewModel to the view
+            return View(userViewModels);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateStatus(IFormCollection form)
+        {
+            // Iterate through all users' IsActive checkbox states
+            foreach (var key in form.Keys)
+            {
+                if (key.StartsWith("isActive_"))
+                {
+                    // Extract the user ID from the key (e.g. "isActive_123")
+                    var userId = key.Substring("isActive_".Length);
+
+                    // Find the user by ID
+                    var user = await _userManager.FindByIdAsync(userId);
+                    if (user != null)
+                    {
+                        // Set the user's IsActive status based on the checkbox
+                        user.IsActive = form[key] == "on";  // If checkbox is checked, it sends "on"
+
+                        // Update the user in the database
+                        await _userManager.UpdateAsync(user);
+                    }
+                }
+            }
+
+            return RedirectToAction("List");
+        }
+
+
+        public class HomeController : Controller
+        {
+            public IActionResult NoAccess()
+            {
+                return View();
+            }
+        }
+
     }
 }
